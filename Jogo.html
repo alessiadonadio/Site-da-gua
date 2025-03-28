@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo - Dia Internacional da Água</title>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #87CEEB; /* Cor do céu */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+  p {
+    color: #fff;
+  }
+
+    h6 {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    #score {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    /* Container do jogo */
+    #game-container {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      background-color: #87CEEB; /* Cor do céu */
+      border: 2px solid #fff;
+      overflow: hidden;
+    }
+
+    .raindrop {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #00f;
+      border-radius: 50%;
+      animation: fall 3s linear infinite;
+      cursor: pointer;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px);
+      }
+      100% {
+        transform: translateY(300px); /* Caindo dentro da área de 300px de altura */
+      }
+    }
+    
+    #game-over {
+      font-size: 24px;
+      color: #fff;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Colete as Gotas de Água</h1>
+
+<p>Objetivo: O jogador precisa clicar nas gotas de água que caem para pontuar.</p>
+
+
+<p id="score">Pontuação: 0</p>
+
+<div id="game-container">
+  <!-- A área do jogo será limitada a esse container -->
+</div>
+
+<p id="game-over">Fim de Jogo! Você atingiu a pontuação máxima!</p>
+
+<script>
+  let score = 0; // Pontuação inicial
+  let dropSpeed = 3; // Velocidade inicial das gotas
+  const maxScore = 15; // Pontuação máxima do jogo
+
+  // Atualiza a pontuação na tela
+  function updateScore() {
+    document.getElementById('score').textContent = `Pontuação: ${score}`;
+  }
+
+  // Exibe a mensagem de "Fim de Jogo"
+  function endGame() {
+    document.getElementById('game-over').style.display = 'block';
+    document.getElementById('game-container').style.display = 'none'; // Oculta o jogo
+  }
+
+  // Função para criar uma gota de água
+  function createRaindrop() {
+    // Se a pontuação máxima for atingida, o jogo é interrompido
+    if (score >= maxScore) {
+      endGame();
+      return;
+    }
+
+    const raindrop = document.createElement('div');
+    raindrop.classList.add('raindrop');
+    
+    // Posição aleatória no eixo X, mas dentro da largura do container
+    raindrop.style.left = Math.random() * 280 + 'px'; // 280px é a largura do container menos a largura da gota
+    
+    // Ajuste do tempo de queda para aumentar a velocidade com o tempo
+    raindrop.style.animationDuration = dropSpeed + 's';
+    
+    // Adiciona a gota de água ao container
+    document.getElementById('game-container').appendChild(raindrop);
+
+    // Função para detectar clique nas gotas
+    raindrop.addEventListener('click', () => {
+      score++; // Aumenta a pontuação
+      updateScore(); // Atualiza a pontuação
+      raindrop.remove(); // Remove a gota quando coletada
+    });
+
+    // Remove a gota após ela cair completamente
+    setTimeout(() => {
+      raindrop.remove();
+    }, dropSpeed * 1000);
+  }
+
+  // Função para gerar gotas em intervalos
+  function generateRaindrops() {
+    setInterval(() => {
+      createRaindrop();
+    }, 1000); // Gera uma gota a cada 1 segundo
+  }
+
+  // Inicia o jogo
+  generateRaindrops();
+</script>
+
+
+
+<footer>
+  <p>&copy; 2025 Dia Internacional da Água. Todos os direitos reservados.</p>
+</footer>
+</body>
+</html>

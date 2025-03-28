@@ -1,0 +1,103 @@
+/* Reset de estilo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #00bcd4;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+/* Seção de conteúdo */
+.content {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content .image {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.content .text-content {
+    flex: 1;
+}
+
+.content h2 {
+    color: #00bcd4;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.content p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.content ul {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+
+footer {
+    text-align: center;
+    background-color: #00bcd4;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    font-size: 1em;
+    margin: 0 15px;
+}
+
+.container {
+display: flex;
+align-items: center;
+justify-content: center;
+list-style: none;
+}
+
+
+li {
+margin-left: 40px;
+}
+
+a {
+text-decoration: none;
+}
